@@ -1,11 +1,19 @@
 import "./App.css";
-import { Navbar } from "./shared/Navbar";
+import { Shop } from "./components/Shop";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MainPage } from "./components/MainPage";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/about" element={<Shop />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
