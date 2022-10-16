@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { TubCard } from "../../shared/TubCard";
+import * as images from "../../images/consts";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,19 +18,19 @@ export const ProductSelection = () => {
         title="essentials"
         subtitle="Beginner Series Workout"
         price="29.99€"
-        img="essentials-blueberry"
+        img={images.essentialsBlueberryImage}
       />
       <TubCard
         title="tartarus"
         subtitle="Intermediate Series Workout"
         price="34.99€"
-        img="tartarus-spartans"
+        img={images.tartarusSpartansImage}
       />
       <TubCard
         title="olympus"
         subtitle="Elite Series Workout"
         price="44.99€"
-        img="olympus-elixir"
+        img={images.olympusElixirImage}
       />
     </Wrapper>
   );

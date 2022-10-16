@@ -15,12 +15,10 @@ export const TubCard = ({ img, title, subtitle, price }) => {
     navigate("/shop");
   };
 
-  const image = `../images/${img}.png`;
-
   return (
     <TubCardDiv>
       <Wrapper>
-        <Image alt="tub" src={image} />
+        <Image alt="tub" src={img} />
         <Content>
           <TubTitle>{title}</TubTitle>
           <TubSubtitle>{subtitle}</TubSubtitle>
@@ -47,8 +45,6 @@ const Wrapper = styled.div`
 const Image = styled.img`
   width: 100%;
   max-width: 20rem;
-  height: 420px; // remove after!!!!!!!!!
-  background-color: ${colours.mainGrayTextColour};
   margin-bottom: ${spacings.spacing16};
 `;
 const Content = styled.div`
