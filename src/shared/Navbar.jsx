@@ -15,17 +15,23 @@ const Price = () => {
   return <span>0.00$</span>;
 };
 
+const aStyle = { textDecoration: "none", color: `${colours.textColour}` };
+const aStyleWhite = {
+  textDecoration: "none",
+  color: `${colours.mainWhiteTextColour}`,
+};
+
 export const Navbar = ({ transparent }) => {
   if (transparent) {
     return (
       <Header transparent>
         <Wrapper>
-          <LogoWhite>
-            <Link to="/">
+          <Link to="/" style={aStyleWhite}>
+            <LogoWhite>
               <img src={logoWhite} alt="logo" />
-              TRIATH
-            </Link>
-          </LogoWhite>
+              <LogoText>TRIATH</LogoText>
+            </LogoWhite>
+          </Link>
           <NavWhite>
             <Link to="/shop">SHOP</Link>
             <Link to="/about">ABOUT US</Link>
@@ -41,12 +47,12 @@ export const Navbar = ({ transparent }) => {
   return (
     <Header>
       <Wrapper>
-        <Logo>
-          <Link to="/">
+        <Link to="/" style={aStyle}>
+          <Logo>
             <img src={logo} alt="logo" />
-            TRIATH
-          </Link>
-        </Logo>
+            <LogoText>TRIATH</LogoText>
+          </Logo>
+        </Link>
         <Nav>
           <Link to="/shop">SHOP</Link>
           <Link to="/about">ABOUT US</Link>
@@ -69,6 +75,7 @@ const Header = styled.header`
   font-family: ${fonts.bebasNeue};
   background-color: ${(props) =>
     props.transparent ? null : colours.mainWhiteTextColour};
+  font-weight: 400;
 `;
 const Wrapper = styled.div`
   max-width: 1000px;
@@ -77,7 +84,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: ${spacings.spacing16};
+  padding: ${spacings.spacing16} 0;
 `;
 const Logo = styled.div`
   font-size: ${fonts.fontSize48};
@@ -89,10 +96,11 @@ const Logo = styled.div`
     padding-right: ${spacings.spacing8};
   }
   cursor: pointer;
-  a {
-    text-decoration: none;
-    color: ${colours.textColour};
-  }
+`;
+const LogoText = styled.h2`
+  font-size: ${fonts.fontSize48};
+  line-height: ${fonts.lineHeight56};
+  margin: 0;
 `;
 const LogoWhite = styled.div`
   font-size: ${fonts.fontSize48};
@@ -104,10 +112,6 @@ const LogoWhite = styled.div`
     padding-right: ${spacings.spacing8};
   }
   cursor: pointer;
-  a {
-    text-decoration: none;
-    color: ${colours.mainWhiteTextColour};
-  }
 `;
 
 const Nav = styled.nav`

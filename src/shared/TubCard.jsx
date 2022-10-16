@@ -7,11 +7,10 @@ import * as spacings from "../utils/spacings";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 
-export const TubCard = ({ img, title, subtitle, price }) => {
+export const TubCard = ({ img, title, subtitle, price, buttonText }) => {
   const navigate = useNavigate();
 
   const navigateToShop = () => {
-    console.log("working");
     navigate("/shop");
   };
 
@@ -24,7 +23,7 @@ export const TubCard = ({ img, title, subtitle, price }) => {
           <TubSubtitle>{subtitle}</TubSubtitle>
           <Price>{price}</Price>
         </Content>
-        <Button onClick={navigateToShop} />
+        <Button onClick={navigateToShop}>{buttonText}</Button>
       </Wrapper>
     </TubCardDiv>
   );
@@ -67,6 +66,7 @@ const TubSubtitle = styled.p`
   color: ${colours.mainGrayTextColour};
   font-size: ${fonts.fontSize20};
   line-height: ${fonts.lineHeight24};
+  text-align: center;
   margin: 0;
 `;
 

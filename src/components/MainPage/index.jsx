@@ -1,6 +1,8 @@
 import React from "react";
 import { Hero } from "./Hero";
 import { ProductSelection } from "./ProductSelection";
+import { Footer } from "../../shared/Footer";
+import { Advertisement } from "./Advertisement";
 import styled from "styled-components";
 
 import * as spacings from "../../utils/spacings";
@@ -17,6 +19,8 @@ export const MainPage = () => {
     <MainPageDiv>
       <Hero />
       <ProductSelection />
+      <Advertisement />
+      <Footer />
     </MainPageDiv>
   );
 };
