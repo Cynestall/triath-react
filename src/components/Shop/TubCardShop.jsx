@@ -7,12 +7,25 @@ import * as spacings from "../../utils/spacings";
 import * as images from "../../images/consts";
 
 import { Button } from "../../shared/Button";
+import { useNavigate } from "react-router-dom";
 
-export const TubCardShop = ({ title, price, subtitle, flavours, image }) => {
+export const TubCardShop = ({
+  tubId,
+  title,
+  price,
+  subtitle,
+  flavours,
+  image,
+}) => {
+  const navigate = useNavigate();
+  console.log(tubId);
+  const redirectToItem = () => {
+    navigate(`/tub?tubId=${tubId}&tubName=${title}`);
+  };
   return (
     <TubCardShopDiv>
       <Wrapper>
-        <Image src={images.dictOfImages[image]} />
+        <Image src={images.dictOfImages[image]} alt={`tub-image-${title}`} />
         <Bottom>
           <DescriptionContainer>
             <ProductName>
@@ -21,12 +34,12 @@ export const TubCardShop = ({ title, price, subtitle, flavours, image }) => {
             </ProductName>
             <Price>{price}€</Price>
           </DescriptionContainer>
-          <Button>BUY NOW</Button>
+          <Button onClick={redirectToItem}>BUY NOW</Button>
           <Flavours>
             Flavours:
             <FlavourContainer>
               {flavours.map((flavour) => {
-                return <FlavourBubble></FlavourBubble>;
+                return <FlavourBubble key={flavour}></FlavourBubble>;
               })}
             </FlavourContainer>
           </Flavours>
@@ -38,7 +51,7 @@ export const TubCardShop = ({ title, price, subtitle, flavours, image }) => {
 
 const TubCardShopDiv = styled.div`
   background-color: ${colours.mainWhiteTextColour};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${colours.boxShadowCardColour};
   max-width: 20rem;
   border-radius: 10px;
 `;

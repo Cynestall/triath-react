@@ -21,3 +21,10 @@ export async function getTubs() {
   const usersCollectionRef = collection(db, "tubs");
   return await getDocs(usersCollectionRef);
 }
+
+export async function getTubByTitle(id) {
+  const usersCollectionRef = collection(db, "tubs");
+  const tubs = await getDocs(usersCollectionRef);
+  const filteredTub = tubs.docs.filter((tub) => tub.id === id);
+  return filteredTub[0];
+}

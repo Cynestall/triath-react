@@ -26,6 +26,10 @@ const MainButton = styled.button`
   border-radius: 0.625rem;
   background-color: ${colours.primaryColour};
   cursor: pointer;
+  &:hover {
+    background-color: ${colours.primaryHoverColour};
+  }
+  transition: 200ms;
 `;
 
 const MainButtonLarge = styled.button`
@@ -38,4 +42,8 @@ const MainButtonLarge = styled.button`
   border-radius: 0.625rem;
   background-color: ${colours.primaryColour};
   cursor: pointer;
+  &:hover {
+    background-color: ${colours.primaryHoverColour};
+  }
+  transition: 200ms;
 `;

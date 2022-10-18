@@ -8,8 +8,10 @@ import * as spacings from "../../utils/spacings";
 import { Button } from "../../shared/Button";
 
 import { olympusAdvertisementImage } from "../../images/consts";
+import { useNavigate } from "react-router-dom";
 
 export const Advertisement = () => {
+  const navigate = useNavigate();
   return (
     <AdvertisementDiv>
       <LeftSide>
@@ -21,7 +23,14 @@ export const Advertisement = () => {
             </TextLarge>
             <TextSmall>Olympus Pre-Workout</TextSmall>
           </TextBlock>
-          <Button large={true}>BUY NOW</Button>
+          <Button
+            large={true}
+            onClick={() => {
+              navigate("/shop");
+            }}
+          >
+            BUY NOW
+          </Button>
         </Container>
       </LeftSide>
       <RightSide>

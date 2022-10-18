@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { Navbar } from "../../shared/Navbar";
 import { Footer } from "../../shared/Footer";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ import { TubCardShop } from "./TubCardShop";
 export const Shop = () => {
   const [tubs, setTubs] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     const loadTubs = async () => {
       const tubsData = await getTubs();
       setTubs(tubsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -21,15 +21,17 @@ export const Shop = () => {
     loadTubs();
   }, []);
 
-  console.log(tubs);
   return (
     <ShopDiv>
       <Navbar />
       <Wrapper>
         <TubSelection>
           {tubs.map((tub) => {
+            console.log(tub.id);
             return (
               <TubCardShop
+                key={tub.id}
+                tubId={tub.id}
                 title={tub.title}
                 price={tub.price}
                 subtitle={tub.subtitle}

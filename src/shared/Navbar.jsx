@@ -37,7 +37,7 @@ export const Navbar = ({ transparent }) => {
             <Link to="/about">ABOUT US</Link>
           </NavWhite>
           <Cart transparent>
-            <ShoppingCartOutlinedIcon fontSize="large" />
+            <ShoppingCartOutlinedIcon fontSize="medium" />
             <Price />
           </Cart>
         </Wrapper>
@@ -58,7 +58,7 @@ export const Navbar = ({ transparent }) => {
           <Link to="/about">ABOUT US</Link>
         </Nav>
         <Cart>
-          <ShoppingCartOutlinedIcon fontSize="large" />
+          <ShoppingCartOutlinedIcon fontSize="medium" />
           <Price />
         </Cart>
       </Wrapper>
@@ -87,62 +87,74 @@ const Wrapper = styled.div`
   padding: ${spacings.spacing16} 0;
 `;
 const Logo = styled.div`
-  font-size: ${fonts.fontSize48};
-  line-height: ${fonts.lineHeight56};
   display: flex;
   align-items: center;
 
   img {
     padding-right: ${spacings.spacing8};
+    max-width: 1.75rem;
   }
   cursor: pointer;
 `;
-const LogoText = styled.h2`
-  font-size: ${fonts.fontSize48};
-  line-height: ${fonts.lineHeight56};
-  margin: 0;
-`;
+
 const LogoWhite = styled.div`
-  font-size: ${fonts.fontSize48};
-  line-height: ${fonts.lineHeight56};
   display: flex;
   align-items: center;
 
   img {
     padding-right: ${spacings.spacing8};
+    max-width: 1.75rem;
   }
   cursor: pointer;
+`;
+
+const LogoText = styled.h2`
+  font-size: ${fonts.fontSize32};
+  line-height: ${fonts.lineHeight32};
+  margin: 0;
 `;
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  font-size: ${fonts.fontSize32};
-  line-height: ${fonts.lineHeight32};
+  font-size: ${fonts.fontSize24};
+  line-height: ${fonts.lineHeight24};
   a {
     text-decoration: none;
     padding: 0 ${spacings.spacing16};
     color: ${colours.textColour};
+    transition: 200ms;
+  }
+  a:hover {
+    color: ${colours.primaryColour};
   }
 `;
 const NavWhite = styled.nav`
   display: flex;
   align-items: center;
-  font-size: ${fonts.fontSize32};
-  line-height: ${fonts.lineHeight32};
+  font-size: ${fonts.fontSize24};
+  line-height: ${fonts.lineHeight24};
   a {
     text-decoration: none;
     padding: 0 ${spacings.spacing16};
     color: ${colours.mainWhiteTextColour};
+    transition: 200ms;
+  }
+  a:hover {
+    color: ${colours.primaryColour};
   }
 `;
 const Cart = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${fonts.fontSize32};
-  line-height: ${fonts.lineHeight32};
+  font-size: ${fonts.fontSize24};
+  line-height: ${fonts.lineHeight24};
   cursor: pointer;
   span {
+    transition: 200ms;
     padding-left: ${spacings.spacing8};
+  }
+  span:hover {
+    color: ${colours.primaryColour};
   }
 `;

@@ -16,6 +16,7 @@ export const lineHeight24 = "1.5rem";
 export const lineHeight32 = "2rem";
 export const lineHeight48 = "3rem";
 export const lineHeight56 = "3.5rem";
+export const lineHeight60 = "3.75rem";
 export const lineHeight64 = "4rem";
 export const lineHeight80 = "5rem";
 export const lineHeight128 = "8rem";

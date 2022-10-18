@@ -1,7 +1,9 @@
-import essentialsBlueberry from "../images/essentials-blueberry.png";
-import tartarusSpartans from "../images/tartarus-spartans.png";
-import olympusElixir from "../images/olympus-elixir.png";
-import olympusAdvertisement from "../images/olympus-advertisement.png";
+import essentialsBlueberry from "./essentials-blueberry.png";
+import tartarusSpartans from "./tartarus-spartans.png";
+import olympusElixir from "./olympus-elixir.png";
+import olympusAdvertisement from "./olympus-advertisement.png";
+
+import spartansBlood from "./spartans-blood.png";
 
 export const essentialsBlueberryImage = essentialsBlueberry;
 export const tartarusSpartansImage = tartarusSpartans;
@@ -13,4 +15,10 @@ export const dictOfImages = {
   tartarusSpartansImage: tartarusSpartans,
   olympusElixirImage: olympusElixir,
   olympusAdvertisementImage: olympusAdvertisement,
+};
+
+export const spartansBloodImage = spartansBlood;
+
+export const dictOfFlavours = {
+  "spartans-blood": spartansBlood,
 };
