@@ -1,6 +1,7 @@
 export const montserrat = "'Montserrat', sans-serif;";
 export const bebasNeue = "'Bebas Neue', cursive;";
 
+export const fontSize14 = "0.875rem";
 export const fontSize16 = "1rem";
 export const fontSize20 = "1.25rem";
 export const fontSize24 = "1.5rem";

@@ -13,6 +13,7 @@ import * as fonts from "../../utils/fonts";
 import { LeftSide } from "./LeftSide";
 import { FlavourDescription } from "./FlavourDescription";
 import { PerformanceStats } from "./PerformanceStats";
+import { FlavourAndCart } from "./FlavourAndCart";
 
 export const TubShop = () => {
   const { search } = useLocation();
@@ -59,6 +60,7 @@ export const TubShop = () => {
                   </ShortDescription>
                 </RightSide>
               </ShopImageAndDescription>
+              <FlavourAndCart></FlavourAndCart>
             </ShopMainComponent>
           </Content>
           <Footer />
@@ -85,6 +87,9 @@ const Content = styled.div`
 const ShopMainComponent = styled.div`
   width: 100%;
   max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: ${spacings.spacing48};
 `;
 const ShopImageAndDescription = styled.div`
   margin-top: ${spacings.spacing48};
