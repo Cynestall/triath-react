@@ -33,7 +33,7 @@ export const Navbar = ({ transparent }) => {
             </LogoWhite>
           </Link>
           <NavWhite>
-            <Link to="/shop">SHOP</Link>
+            <Link to="/collections">SHOP</Link>
             <Link to="/about">ABOUT US</Link>
           </NavWhite>
           <Cart transparent>
@@ -54,7 +54,7 @@ export const Navbar = ({ transparent }) => {
           </Logo>
         </Link>
         <Nav>
-          <Link to="/shop">SHOP</Link>
+          <Link to="/collections">SHOP</Link>
           <Link to="/about">ABOUT US</Link>
         </Nav>
         <Cart>

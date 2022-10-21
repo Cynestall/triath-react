@@ -13,6 +13,21 @@ export const flavourNames = {
   helensMix: "Helen's Mix",
   equatorialElixir: "Equatorial Elixir",
 };
+export const flavourDescriptions = {
+  sourCherry: "Mix of sour cherry flavouring.",
+  dragonsBreath: "Mix of pineapple, lemon, lychee, orange, and dragonfruit.",
+  blueberryRaspberry: "Mix of blueberry and raspberry.",
+  beachPeach: "Mix of peach, orange, and cranberry.",
+  spartansBlood: "Mix of orange, grapefruit, strawberry, and apple.",
+  colaLime: "Mix of cola and lime.",
+  blueRaspberry: "Mix of blue raspberry flavouring.",
+  watermelon: "Mix of watermelon flavouring.",
+  mangoPineapple: "Mix of mango and pineapple.",
+  watermelonBerry: "Mix of watermelon, strawberry, and raspberry.",
+  electricLemonade: "Mix of lemon flavouring.",
+  helensMix: "Mix of orange, grapefruit, strawberry, apple, and watermelon.",
+  equatorialElixir: "Mix of mango, pineapple, passionfruit, and tangerine.",
+};
 
 export const flavourColourDict = {
   sourCherry:

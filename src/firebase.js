@@ -22,10 +22,10 @@ export async function getTubs() {
   return await getDocs(tubsCollectionRef);
 }
 
-export async function getTubByTitle(id) {
+export async function getTubByTitle(title) {
   const tubsCollectionRef = collection(db, "tubs");
   const tubs = await getDocs(tubsCollectionRef);
-  const filteredTub = tubs.docs.filter((tub) => tub.id === id);
+  const filteredTub = tubs.docs.filter((tub) => tub.data().title === title);
   return filteredTub[0];
 }
 

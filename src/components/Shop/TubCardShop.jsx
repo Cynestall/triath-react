@@ -20,7 +20,7 @@ export const TubCardShop = ({
 }) => {
   const navigate = useNavigate();
   const redirectToItem = () => {
-    navigate(`/tub?tubId=${tubId}&tubName=${title}`);
+    navigate(`/products/${title}`);
   };
   return (
     <TubCardShopDiv>

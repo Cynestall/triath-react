@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { getTubByTitle, getTubDescriptionByTitle } from "../../firebase";
 import { Footer } from "../../shared/Footer";
@@ -17,40 +16,39 @@ import { FlavourAndCart } from "./FlavourAndCart";
 import { ShopTubDescription } from "./ShopTubDescription";
 
 export const TubShop = ({ cart, setCart }) => {
-  const { search } = useLocation();
   const [tub, setTub] = useState([]);
   const [tubDescription, setTubDescription] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [selectedFlavour, setSelectedFlavour] = useState("");
 
-  const query = new URLSearchParams(search);
-
-  const getTub = async () => {
-    setLoading(true);
-
-    const filteredTub = await getTubByTitle(query.get("tubId"));
-
-    setTub({ ...filteredTub.data(), id: filteredTub.id });
-    setSelectedFlavour(filteredTub.data().flavours[0]);
-
-    setLoading(false);
-    return tub, selectedFlavour;
-  };
-
-  const getTubDescription = async () => {
-    setLoading(true);
-
-    const filteredTub = await getTubDescriptionByTitle(query.get("tubName"));
-
-    setTubDescription({ ...filteredTub.data(), id: filteredTub.id });
-
-    setLoading(false);
-  };
+  const query = window.location.pathname;
+  const titleOfProduct = query.substring(query.lastIndexOf("/") + 1);
 
   useMemo(() => {
+    const getTub = async () => {
+      setLoading(true);
+
+      const filteredTub = await getTubByTitle(titleOfProduct);
+
+      setTub({ ...filteredTub.data(), id: filteredTub.id });
+      setSelectedFlavour(filteredTub.data().flavours[0]);
+
+      setLoading(false);
+    };
+
+    const getTubDescription = async () => {
+      setLoading(true);
+
+      const filteredTub = await getTubDescriptionByTitle(titleOfProduct);
+
+      setTubDescription({ ...filteredTub.data(), id: filteredTub.id });
+
+      setLoading(false);
+    };
+
     getTub();
     getTubDescription();
-  }, [search]);
+  }, [titleOfProduct]);
 
   return (
     <div>
@@ -149,6 +147,7 @@ const ShortDescription = styled.div`
   background-color: ${colours.mainWhiteTextColour};
   box-shadow: ${colours.boxShadowCardColour};
   border-radius: 10px;
+  min-width: 28rem;
 `;
 const PreworkoutNameAndPrice = styled.div`
   display: flex;

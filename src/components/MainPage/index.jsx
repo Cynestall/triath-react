@@ -6,6 +6,7 @@ import { Advertisement } from "./Advertisement";
 import styled from "styled-components";
 
 import * as spacings from "../../utils/spacings";
+import { Navbar } from "../../shared/Navbar";
 
 const MainPageDiv = styled.div`
   display: flex;

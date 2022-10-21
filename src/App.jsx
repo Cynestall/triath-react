@@ -12,11 +12,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainPage cart={cart} />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/collections" element={<Shop />} />
           <Route path="/about" element={<Shop />} />
           <Route path="/add" element={<Add />} />
           <Route
-            path="/tub"
+            path="/products/*"
             element={<TubShop cart={cart} setCart={setCart} />}
           />
         </Routes>

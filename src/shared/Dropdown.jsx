@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 import * as colours from "../utils/colors";
 import * as spacings from "../utils/spacings";
 import * as fonts from "../utils/fonts";
+import listenForOutsideClicks from "../utils/listenForOutsideClicks";
 
 import { flavourNames, flavourColourDict } from "../utils/flavours";
 
@@ -12,8 +13,13 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 export const Dropdown = ({ flavours, selectedFlavour, setSelectedFlavour }) => {
   const [open, setOpen] = useState(false);
 
+  // Close dropdown when clicking away from it
+  const menuRef = useRef(null);
+  const [listening, setListening] = useState(false);
+  useEffect(listenForOutsideClicks(listening, setListening, menuRef, setOpen));
+
   return (
-    <DropdownWrapper>
+    <DropdownWrapper ref={menuRef}>
       <DropdownContainer isOpen={open}>
         <DropdownLabel>Flavour</DropdownLabel>
         <DropdownMenu
