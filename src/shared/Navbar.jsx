@@ -121,7 +121,7 @@ const Nav = styled.nav`
   line-height: ${fonts.lineHeight24};
   a {
     text-decoration: none;
-    padding: 0 ${spacings.spacing16};
+    padding: 0 ${spacings.spacing24};
     color: ${colours.textColour};
     transition: 200ms;
   }
@@ -136,7 +136,7 @@ const NavWhite = styled.nav`
   line-height: ${fonts.lineHeight24};
   a {
     text-decoration: none;
-    padding: 0 ${spacings.spacing16};
+    padding: 0 ${spacings.spacing24};
     color: ${colours.mainWhiteTextColour};
     transition: 200ms;
   }
