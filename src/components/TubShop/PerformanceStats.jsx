@@ -5,20 +5,20 @@ import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import * as fonts from "../../utils/fonts";
 
-export const PerformanceStats = () => {
+export const PerformanceStats = ({ pump, energy, strength }) => {
   return (
     <PerformanceStatsDiv>
       <PerformanceStatRow>
         <PerformanceName>Pump</PerformanceName>
-        <PerformanceBar percent={"70%"} />
+        <PerformanceBar percent={`${pump}%`} />
       </PerformanceStatRow>
       <PerformanceStatRow>
         <PerformanceName>Energy</PerformanceName>
-        <PerformanceBar percent={"60%"} />
+        <PerformanceBar percent={`${energy}%`} />
       </PerformanceStatRow>
       <PerformanceStatRow>
         <PerformanceName>Strength</PerformanceName>
-        <PerformanceBar percent={"75%"} />
+        <PerformanceBar percent={`${strength}%`} />
       </PerformanceStatRow>
     </PerformanceStatsDiv>
   );

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { getTubByTitle } from "../../firebase";
+import { getTubByTitle, getTubDescriptionByTitle } from "../../firebase";
 import { Footer } from "../../shared/Footer";
 import { Navbar } from "../../shared/Navbar";
 
@@ -14,23 +14,42 @@ import { LeftSide } from "./LeftSide";
 import { FlavourDescription } from "./FlavourDescription";
 import { PerformanceStats } from "./PerformanceStats";
 import { FlavourAndCart } from "./FlavourAndCart";
+import { ShopTubDescription } from "./ShopTubDescription";
 
-export const TubShop = () => {
+export const TubShop = ({ cart, setCart }) => {
   const { search } = useLocation();
   const [tub, setTub] = useState([]);
-  const [selectedFlavour, selectFlavour] = useState("");
+  const [tubDescription, setTubDescription] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [selectedFlavour, setSelectedFlavour] = useState("");
+
+  const query = new URLSearchParams(search);
+
+  const getTub = async () => {
+    setLoading(true);
+
+    const filteredTub = await getTubByTitle(query.get("tubId"));
+
+    setTub({ ...filteredTub.data(), id: filteredTub.id });
+    setSelectedFlavour(filteredTub.data().flavours[0]);
+
+    setLoading(false);
+    return tub, selectedFlavour;
+  };
+
+  const getTubDescription = async () => {
+    setLoading(true);
+
+    const filteredTub = await getTubDescriptionByTitle(query.get("tubName"));
+
+    setTubDescription({ ...filteredTub.data(), id: filteredTub.id });
+
+    setLoading(false);
+  };
 
   useMemo(() => {
-    const getTub = async () => {
-      const query = new URLSearchParams(search);
-      const filteredTub = await getTubByTitle(query.get("tubId"));
-      console.log(filteredTub.data());
-      setTub({ ...filteredTub.data(), id: filteredTub.id });
-      selectFlavour(filteredTub.data().flavours[0]);
-      setLoading(false);
-    };
     getTub();
+    getTubDescription();
   }, [search]);
 
   return (
@@ -52,16 +71,35 @@ export const TubShop = () => {
                       <PreworkoutPrice>{tub.price}€</PreworkoutPrice>
                     </PreworkoutNameAndPrice>
                     <Spacer />
-                    <PerformanceStats />
+                    <PerformanceStats
+                      pump={tubDescription.pump}
+                      energy={tubDescription.energy}
+                      strength={tubDescription.strength}
+                    />
                     <Spacer />
-                    <ServingSize>Serving size: 40</ServingSize>
+                    <ServingSize>
+                      Serving size: {tubDescription.servings}
+                    </ServingSize>
                     <Spacer />
                     <FlavourDescription selectedFlavour={selectedFlavour} />
                   </ShortDescription>
                 </RightSide>
               </ShopImageAndDescription>
-              <FlavourAndCart></FlavourAndCart>
+              <FlavourAndCart
+                tubId={tub.id}
+                title={tub.title}
+                flavours={tub.flavours}
+                cart={cart}
+                setCart={setCart}
+                selectedFlavour={selectedFlavour}
+                setSelectedFlavour={setSelectedFlavour}
+              ></FlavourAndCart>
             </ShopMainComponent>
+            <ShopTubDescription
+              productDescription={tubDescription.description}
+              suggestedUse={tubDescription.suggestedUse}
+              supplementFacts={tubDescription.supplementFacts}
+            />
           </Content>
           <Footer />
         </TubShopDiv>
@@ -83,6 +121,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: ${spacings.spacing48};
+  padding: ${spacings.spacing48} 0;
 `;
 const ShopMainComponent = styled.div`
   width: 100%;
@@ -92,7 +132,6 @@ const ShopMainComponent = styled.div`
   gap: ${spacings.spacing48};
 `;
 const ShopImageAndDescription = styled.div`
-  margin-top: ${spacings.spacing48};
   display: flex;
 `;
 const RightSide = styled.div`

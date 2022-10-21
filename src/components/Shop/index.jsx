@@ -27,7 +27,6 @@ export const Shop = () => {
       <Wrapper>
         <TubSelection>
           {tubs.map((tub) => {
-            console.log(tub.id);
             return (
               <TubCardShop
                 key={tub.id}

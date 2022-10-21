@@ -34,7 +34,10 @@ export const Advertisement = () => {
         </Container>
       </LeftSide>
       <RightSide>
-        <AdvertisementImage src={olympusAdvertisementImage} />
+        <AdvertisementImage
+          src={olympusAdvertisementImage}
+          alt="tub-advert-large"
+        />
       </RightSide>
     </AdvertisementDiv>
   );

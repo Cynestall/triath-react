@@ -1,9 +1,14 @@
 export const spacing2 = "0.125rem";
 export const spacing4 = "0.25rem";
+export const spacing6 = "0.375rem";
 export const spacing8 = "0.5rem";
 export const spacing12 = "0.75rem";
+export const spacing9 = "0.5625rem";
+export const spacing14 = "0.875rem";
 export const spacing16 = "1rem";
+export const spacing18 = "1.125rem";
 export const spacing20 = "1.25rem";
+export const spacing21 = "1.3125rem";
 export const spacing24 = "1.5rem";
 export const spacing32 = "2rem";
 export const spacing36 = "2.25rem";

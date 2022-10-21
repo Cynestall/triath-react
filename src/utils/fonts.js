@@ -11,6 +11,7 @@ export const fontSize64 = "4rem";
 export const fontSize80 = "5rem";
 export const fontSize144 = "9rem";
 
+export const lineHeight14 = "0.875rem";
 export const lineHeight16 = "1rem";
 export const lineHeight20 = "1.25rem";
 export const lineHeight24 = "1.5rem";

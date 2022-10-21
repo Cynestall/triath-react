@@ -5,6 +5,7 @@ import * as colours from "../../utils/colors";
 import * as fonts from "../../utils/fonts";
 import * as spacings from "../../utils/spacings";
 import * as images from "../../images/consts";
+import * as flavourConstants from "../../utils/flavours";
 
 import { Button } from "../../shared/Button";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +19,6 @@ export const TubCardShop = ({
   image,
 }) => {
   const navigate = useNavigate();
-  console.log(tubId);
   const redirectToItem = () => {
     navigate(`/tub?tubId=${tubId}&tubName=${title}`);
   };
@@ -39,7 +39,16 @@ export const TubCardShop = ({
             Flavours:
             <FlavourContainer>
               {flavours.map((flavour) => {
-                return <FlavourBubble key={flavour}></FlavourBubble>;
+                return (
+                  <FlavourBubble
+                    key={flavour}
+                    flavourColor={flavourConstants.flavourColourDict[flavour]}
+                  >
+                    <FlavourTooltip>
+                      <nobr>{flavourConstants.flavourNames[flavour]}</nobr>
+                    </FlavourTooltip>
+                  </FlavourBubble>
+                );
               })}
             </FlavourContainer>
           </Flavours>
@@ -129,5 +138,32 @@ const FlavourBubble = styled.div`
   width: 1rem;
   height: 1rem;
   border-radius: 100%;
-  background-color: green;
+  background: ${(props) => props.flavourColor || "red"};
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:hover {
+    div {
+      transform: scale(100%);
+      opacity: 1;
+    }
+  }
+`;
+const FlavourTooltip = styled.div`
+  transform: scale(0%);
+  opacity: 0;
+  background-color: ${colours.textColour};
+  text-align: center;
+  color: ${colours.mainWhiteTextColour};
+  font-size: ${fonts.fontSize14};
+  line-height: ${fonts.lineHeight16};
+  font-family: ${fonts.montserrat};
+  position: absolute;
+  top: 150%;
+  padding: ${spacings.spacing8} ${spacings.spacing12};
+  transition: 200ms;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
 `;

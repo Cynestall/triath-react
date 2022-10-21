@@ -17,7 +17,7 @@ export const TubCard = ({ img, title, subtitle, price, buttonText }) => {
   return (
     <TubCardDiv>
       <Wrapper>
-        <Image alt="tub" src={img} />
+        <Image alt={`tub-image-${title}`} src={img} />
         <Content>
           <TubTitle>{title}</TubTitle>
           <TubSubtitle>{subtitle}</TubSubtitle>

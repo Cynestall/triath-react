@@ -18,13 +18,20 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export async function getTubs() {
-  const usersCollectionRef = collection(db, "tubs");
-  return await getDocs(usersCollectionRef);
+  const tubsCollectionRef = collection(db, "tubs");
+  return await getDocs(tubsCollectionRef);
 }
 
 export async function getTubByTitle(id) {
-  const usersCollectionRef = collection(db, "tubs");
-  const tubs = await getDocs(usersCollectionRef);
+  const tubsCollectionRef = collection(db, "tubs");
+  const tubs = await getDocs(tubsCollectionRef);
   const filteredTub = tubs.docs.filter((tub) => tub.id === id);
+  return filteredTub[0];
+}
+
+export async function getTubDescriptionByTitle(title) {
+  const descriptionCollectionRef = collection(db, "descriptions");
+  const tubs = await getDocs(descriptionCollectionRef);
+  const filteredTub = tubs.docs.filter((tub) => tub.data().title === title);
   return filteredTub[0];
 }

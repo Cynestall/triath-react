@@ -6,13 +6,14 @@ import * as images from "../../images/consts";
 import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import * as fonts from "../../utils/fonts";
+import { flavourNames } from "../../utils/flavours";
 
 export const FlavourDescription = ({ selectedFlavour }) => {
   return (
     <FlavourDescriptionDiv>
       <FlavourImage src={images.dictOfFlavours[selectedFlavour]} />
       <FlavourTextContainer>
-        <FlavourName>Spartans blood</FlavourName>
+        <FlavourName>{flavourNames[selectedFlavour]}</FlavourName>
         <FlavourDescriptionText>
           Mix of apple, orange, cherry, strawberry, and pomegranate.
         </FlavourDescriptionText>
