@@ -64,7 +64,8 @@ const DropdownContainer = styled.div`
   padding-bottom: ${spacings.spacing18};
   width: 100%;
   .transition {
-    transition-delay: ${(props) => (props.isOpen ? "0ms" : "200ms")};
+    transition-delay: ${(props) => (props.isOpen ? "0ms" : "200ms")}, 0ms;
+    transition-property: border-radius, background-color;
   }
 `;
 
