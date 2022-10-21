@@ -18,21 +18,21 @@ export const ProductSelection = () => {
         title="essentials"
         subtitle="Beginner Series Workout"
         price="29.99€"
-        img={images.essentialsBlueberryImage}
+        img={images.essentialsImage}
         buttonText="DETAILS"
       />
       <TubCard
         title="tartarus"
         subtitle="Intermediate Series Workout"
         price="34.99€"
-        img={images.tartarusSpartansImage}
+        img={images.tartarusImage}
         buttonText="DETAILS"
       />
       <TubCard
         title="olympus"
         subtitle="Elite Series Workout"
         price="44.99€"
-        img={images.olympusElixirImage}
+        img={images.olympusImage}
         buttonText="DETAILS"
       />
     </Wrapper>

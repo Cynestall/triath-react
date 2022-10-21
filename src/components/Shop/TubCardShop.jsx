@@ -10,22 +10,15 @@ import * as flavourConstants from "../../utils/flavours";
 import { Button } from "../../shared/Button";
 import { useNavigate } from "react-router-dom";
 
-export const TubCardShop = ({
-  tubId,
-  title,
-  price,
-  subtitle,
-  flavours,
-  image,
-}) => {
+export const TubCardShop = ({ title, price, subtitle, flavours }) => {
   const navigate = useNavigate();
   const redirectToItem = () => {
     navigate(`/products/${title}`);
   };
   return (
-    <TubCardShopDiv>
+    <TubCardShopDiv onClick={redirectToItem}>
       <Wrapper>
-        <Image src={images.dictOfImages[image]} alt={`tub-image-${title}`} />
+        <Image src={images.dictOfImages[title]} alt={`tub-image-${title}`} />
         <Bottom>
           <DescriptionContainer>
             <ProductName>
@@ -34,7 +27,7 @@ export const TubCardShop = ({
             </ProductName>
             <Price>{price}€</Price>
           </DescriptionContainer>
-          <Button onClick={redirectToItem}>BUY NOW</Button>
+          <Button>BUY NOW</Button>
           <Flavours>
             Flavours:
             <FlavourContainer>
@@ -63,6 +56,12 @@ const TubCardShopDiv = styled.div`
   box-shadow: ${colours.boxShadowCardColour};
   max-width: 20rem;
   border-radius: 10px;
+  transition: 200ms ease-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: ${colours.boxShadowCardColourHover};
+  }
 `;
 const Wrapper = styled.div`
   padding: ${spacings.spacing32} ${spacings.spacing36};

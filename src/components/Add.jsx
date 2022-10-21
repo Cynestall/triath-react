@@ -5,8 +5,6 @@ import { collection, addDoc } from "@firebase/firestore";
 import styled from "styled-components";
 import { Button } from "../shared/Button";
 
-import * as colours from "../utils/colors";
-import * as spacings from "../utils/spacings";
 import * as fonts from "../utils/fonts";
 
 export const Add = () => {
@@ -14,7 +12,6 @@ export const Add = () => {
   const [subtitle, setSubtitle] = useState("");
   const [flavours, setFlavours] = useState("");
   const [price, setPrice] = useState(0.0);
-  const [image, setImage] = useState("");
 
   const [descTitle, setDescTitle] = useState("");
   const [pump, setPump] = useState(0.0);
@@ -33,7 +30,6 @@ export const Add = () => {
       title: title,
       subtitle: subtitle,
       price: Number(price),
-      image: image,
       flavours: arrayOfFlavours,
     });
   };
@@ -47,8 +43,6 @@ export const Add = () => {
       strength: Number(strength),
       servings: Number(servings),
       description: description,
-      suggestedUse: suggestedUse,
-      supplementFacts: supplementFacts,
     });
   };
 
@@ -83,7 +77,7 @@ export const Add = () => {
           value={price}
         />
         <Label>
-          Flavours (separate with commas: "spartans-blood,watermelon")
+          Flavours (separate with commas: "spartansBlood,watermelon")
         </Label>
         <Input
           placeholder="Flavours"
@@ -92,15 +86,6 @@ export const Add = () => {
             setFlavours(event.target.value);
           }}
           value={flavours}
-        />
-        <Label>Image</Label>
-        <Input
-          placeholder="Image"
-          type="text"
-          onChange={(event) => {
-            setImage(event.target.value);
-          }}
-          value={image}
         />
         <Button onClick={createTubInDb}>Submit</Button>
       </TubAdd>

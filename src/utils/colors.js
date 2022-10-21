@@ -9,4 +9,4 @@ export const mainWhiteTextColour = "#FFFFFF";
 export const filterColor = "#E9E9E9";
 
 export const boxShadowCardColour = "0px 4px 4px rgba(0, 0, 0, 0.1)";
-
+export const boxShadowCardColourHover = "0px 4px 6px rgba(207, 58, 75, 0.2)";

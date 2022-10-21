@@ -45,7 +45,7 @@ const HeroText = styled.h1`
       background-position: -200% center;
     }
   }
-  animation: background-pan 10s linear infinite;
+  animation: background-pan 7s linear infinite;
   background-size: 200%;
 `;
 

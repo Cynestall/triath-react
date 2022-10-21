@@ -1,6 +1,8 @@
-import essentialsBlueberry from "./essentials-blueberry.png";
-import tartarusSpartans from "./tartarus-spartans.png";
-import olympusElixir from "./olympus-elixir.png";
+import essentials from "./essentials.png";
+import tartarus from "./tartarus.png";
+import olympus from "./olympus.png";
+import asphodel from "./asphodel.png";
+import elysium from "./elysium.png";
 import olympusAdvertisement from "./olympus-advertisement.png";
 import tartarusSupp from "./tartarus-supp.png";
 
@@ -18,22 +20,24 @@ import electricLemonade from "./electric-lemonade.png";
 import helensMix from "./helens-mix.png";
 import equatorialElixir from "./equatorial-elixir.png";
 
-export const essentialsBlueberryImage = essentialsBlueberry;
-export const tartarusSpartansImage = tartarusSpartans;
-export const olympusElixirImage = olympusElixir;
+export const essentialsImage = essentials;
+export const tartarusImage = tartarus;
+export const olympusImage = olympus;
 export const olympusAdvertisementImage = olympusAdvertisement;
 
 export const dictOfImages = {
-  essentialsBlueberryImage: essentialsBlueberry,
-  tartarusSpartansImage: tartarusSpartans,
-  olympusElixirImage: olympusElixir,
+  essentials: essentials,
+  tartarus: tartarus,
+  olympus: olympus,
+  asphodel: asphodel,
+  elysium: elysium,
   olympusAdvertisementImage: olympusAdvertisement,
 };
 
 export const tartarusSuppImage = tartarusSupp;
 
 export const dictOfSupplementFacts = {
-  tartarusSuppImage: tartarusSupp,
+  tartarus: tartarusSupp,
 };
 
 export const dictOfFlavours = {

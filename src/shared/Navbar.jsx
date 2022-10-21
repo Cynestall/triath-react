@@ -95,6 +95,10 @@ const Logo = styled.div`
     max-width: 1.75rem;
   }
   cursor: pointer;
+  transition: 200ms;
+  &:hover {
+    color: ${colours.primaryColour};
+  }
 `;
 
 const LogoWhite = styled.div`
@@ -106,6 +110,10 @@ const LogoWhite = styled.div`
     max-width: 1.75rem;
   }
   cursor: pointer;
+  transition: 200ms;
+  &:hover {
+    color: ${colours.primaryColour};
+  }
 `;
 
 const LogoText = styled.h2`
@@ -150,11 +158,11 @@ const Cart = styled.div`
   font-size: ${fonts.fontSize24};
   line-height: ${fonts.lineHeight24};
   cursor: pointer;
+  transition: 200ms;
   span {
-    transition: 200ms;
     padding-left: ${spacings.spacing8};
   }
-  span:hover {
+  &:hover {
     color: ${colours.primaryColour};
   }
 `;

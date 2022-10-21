@@ -5,14 +5,14 @@ import * as images from "../../images/consts";
 
 import * as spacings from "../../utils/spacings";
 
-export const LeftSide = ({ image, title }) => {
+export const LeftSide = ({ title }) => {
   return (
     <LeftSideDiv>
-      <MainImage src={images.dictOfImages[image]} alt={`tub-${title}`} />
+      <MainImage src={images.dictOfImages[title]} alt={`tub-${title}`} />
       <ImageSelection disabled={true}>
-        <SmallImage src={images.dictOfImages[image]} />
-        <SmallImage src={images.dictOfImages[image]} />
-        <SmallImage src={images.dictOfImages[image]} />
+        <SmallImage src={images.dictOfImages[title]} />
+        <SmallImage src={images.dictOfImages[title]} />
+        <SmallImage src={images.dictOfImages[title]} />
       </ImageSelection>
     </LeftSideDiv>
   );

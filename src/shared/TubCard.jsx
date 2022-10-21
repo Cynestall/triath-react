@@ -11,7 +11,7 @@ export const TubCard = ({ img, title, subtitle, price, buttonText }) => {
   const navigate = useNavigate();
 
   const navigateToShop = () => {
-    navigate("/shop");
+    navigate("/collections");
   };
 
   return (

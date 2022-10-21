@@ -58,7 +58,7 @@ export const TubShop = ({ cart, setCart }) => {
           <Content>
             <ShopMainComponent>
               <ShopImageAndDescription>
-                <LeftSide image={tub.image} title={tub.title} />
+                <LeftSide title={tub.title} />
                 <RightSide>
                   <ShortDescription>
                     <PreworkoutNameAndPrice>
@@ -94,9 +94,8 @@ export const TubShop = ({ cart, setCart }) => {
               ></FlavourAndCart>
             </ShopMainComponent>
             <ShopTubDescription
+              title={tub.title}
               productDescription={tubDescription.description}
-              suggestedUse={tubDescription.suggestedUse}
-              supplementFacts={tubDescription.supplementFacts}
             />
           </Content>
           <Footer />

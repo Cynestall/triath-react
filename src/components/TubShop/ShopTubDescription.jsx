@@ -7,11 +7,7 @@ import * as fonts from "../../utils/fonts";
 
 import { dictOfSupplementFacts } from "../../images/consts";
 
-export const ShopTubDescription = ({
-  productDescription,
-  suggestedUse,
-  supplementFacts,
-}) => {
+export const ShopTubDescription = ({ title, productDescription }) => {
   return (
     <ShopTubDescriptionWrapper>
       <ShopTubDescriptionDiv>
@@ -24,13 +20,18 @@ export const ShopTubDescription = ({
           <TextComponent>
             <TextHeading>SUGGESTED USE</TextHeading>
             <Spacer />
-            <TextParagraph>{suggestedUse}</TextParagraph>
+            <TextParagraph>
+              As a dietary supplement, mix 1 serving of Triumph in 300-450ml of
+              water and consume 20 to 30 minutes prior to training. Vary the
+              amount of water to achieve your desired flavor level (the less
+              water, the stronger the taste).
+            </TextParagraph>
           </TextComponent>
         </LeftSide>
         <RightSide>
           <SupplementFactImage
-            src={dictOfSupplementFacts[supplementFacts]}
-            alt={"supplement-fact-image"}
+            src={dictOfSupplementFacts[`${title}`]}
+            alt={`supplement-fact-image-${title}`}
           />
         </RightSide>
       </ShopTubDescriptionDiv>

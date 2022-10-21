@@ -35,7 +35,6 @@ export const Shop = () => {
                 price={tub.price}
                 subtitle={tub.subtitle}
                 flavours={tub.flavours}
-                image={tub.image}
               />
             );
           })}
