@@ -3,8 +3,15 @@ import tartarus from "./tartarus.png";
 import olympus from "./olympus.png";
 import asphodel from "./asphodel.png";
 import elysium from "./elysium.png";
+import synergy from "./synergy.png";
 import olympusAdvertisement from "./olympus-advertisement.png";
+
+import essentialsSupp from "./essentials-supp.png";
 import tartarusSupp from "./tartarus-supp.png";
+import olympusSupp from "./olympus-supp.png";
+import asphodelSupp from "./asphodel-supp.png";
+import elysiumSupp from "./elysium-supp.png";
+import synergySupp from "./synergy-supp.png";
 
 import sourCherry from "./cherry.png";
 import dragonsBreath from "./dragons-breath.png";
@@ -31,13 +38,19 @@ export const dictOfImages = {
   olympus: olympus,
   asphodel: asphodel,
   elysium: elysium,
+  synergy: synergy,
   olympusAdvertisementImage: olympusAdvertisement,
 };
 
 export const tartarusSuppImage = tartarusSupp;
 
 export const dictOfSupplementFacts = {
+  essentials: essentialsSupp,
   tartarus: tartarusSupp,
+  olympus: olympusSupp,
+  asphodel: asphodelSupp,
+  elysium: elysiumSupp,
+  synergy: synergySupp,
 };
 
 export const dictOfFlavours = {

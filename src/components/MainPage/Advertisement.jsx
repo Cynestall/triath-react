@@ -26,7 +26,7 @@ export const Advertisement = () => {
           <Button
             large={true}
             onClick={() => {
-              navigate("/collections");
+              navigate("/collection");
             }}
           >
             BUY NOW
