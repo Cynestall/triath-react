@@ -14,12 +14,15 @@ import { FlavourDescription } from "./FlavourDescription";
 import { PerformanceStats } from "./PerformanceStats";
 import { FlavourAndCart } from "./FlavourAndCart";
 import { ShopTubDescription } from "./ShopTubDescription";
+import { NoMatch } from "../NoMatch";
 
 export const TubShop = ({ cart, setCart }) => {
   const [tub, setTub] = useState([]);
   const [tubDescription, setTubDescription] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [selectedFlavour, setSelectedFlavour] = useState("");
+
+  const [noMatch, setNoMatch] = useState(false);
 
   const query = window.location.pathname;
   const titleOfProduct = query.substring(query.lastIndexOf("/") + 1);
@@ -29,6 +32,11 @@ export const TubShop = ({ cart, setCart }) => {
       setLoading(true);
 
       const filteredTub = await getTubByTitle(titleOfProduct);
+
+      if (!filteredTub) {
+        setNoMatch(true);
+        return;
+      }
 
       setTub({ ...filteredTub.data(), id: filteredTub.id });
       setSelectedFlavour(filteredTub.data().flavours[0]);
@@ -41,6 +49,10 @@ export const TubShop = ({ cart, setCart }) => {
 
       const filteredTub = await getTubDescriptionByTitle(titleOfProduct);
 
+      if (!filteredTub) {
+        setNoMatch(true);
+        return;
+      }
       setTubDescription({ ...filteredTub.data(), id: filteredTub.id });
 
       setLoading(false);
@@ -50,6 +62,7 @@ export const TubShop = ({ cart, setCart }) => {
     getTubDescription();
   }, [titleOfProduct]);
 
+  if (noMatch) return <NoMatch />;
   return (
     <div>
       {!isLoading && (

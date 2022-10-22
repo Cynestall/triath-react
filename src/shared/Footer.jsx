@@ -5,7 +5,7 @@ import * as colours from "../utils/colors";
 import * as fonts from "../utils/fonts";
 import * as spacings from "../utils/spacings";
 
-import logo from "../icons/triathBlackLogoLarge.svg";
+import logo from "../icons/triathWhiteLogoLarge.svg";
 
 import instagram from "../icons/instagram.svg";
 import twitter from "../icons/twitter.svg";
