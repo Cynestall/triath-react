@@ -23,6 +23,6 @@ export async function generateToken() {
     })
     .setExpirationTime("10m")
     .sign(secret);
-  console.log(jwt);
+
   return jwt;
 }
