@@ -9,6 +9,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button } from "../../shared/Button";
 import { Dropdown } from "../../shared/Dropdown";
+import { generateToken } from "../../utils/paymentApi";
+import { useNavigate } from "react-router-dom";
 
 export const FlavourAndCart = ({
   tubId,
@@ -20,6 +22,10 @@ export const FlavourAndCart = ({
   setSelectedFlavour,
 }) => {
   const [amount, setAmount] = useState(1);
+  const PaymentOnClick = async () => {
+    const token = await generateToken();
+    window.location = `https://sandbox-payments.montonio.com?payment_token=${token}`;
+  };
 
   return (
     <FlavourAndCartDiv>
@@ -66,7 +72,7 @@ export const FlavourAndCart = ({
         </AmountSelection>
         <Button
           onClick={() => {
-            setCart([...cart, { title, tubId, amount }]);
+            PaymentOnClick();
           }}
         >
           <ButtonWrapper>
