@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
@@ -10,7 +10,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button } from "../../shared/Button";
 import { Dropdown } from "../../shared/Dropdown";
 import { generateToken } from "../../utils/paymentApi";
-import { useNavigate } from "react-router-dom";
 
 export const FlavourAndCart = ({
   tubId,

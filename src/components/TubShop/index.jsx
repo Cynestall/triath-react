@@ -24,8 +24,8 @@ export const TubShop = ({ cart, setCart }) => {
 
   const [noMatch, setNoMatch] = useState(false);
 
-  const query = window.location.pathname;
-  const titleOfProduct = query.substring(query.lastIndexOf("/") + 1);
+  const pathname = window.location.pathname;
+  const titleOfProduct = pathname.substring(pathname.lastIndexOf("/") + 1);
 
   useMemo(() => {
     const getTub = async () => {

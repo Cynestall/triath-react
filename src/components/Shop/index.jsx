@@ -8,9 +8,13 @@ import { getTubs } from "../../firebase";
 import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import { TubCardShop } from "./TubCardShop";
+import { decodeToken } from "../../utils/paymentApi";
 
 export const Shop = () => {
   const [tubs, setTubs] = useState([]);
+
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  console.log(urlSearchParams.get("payment_token"));
 
   useMemo(() => {
     const loadTubs = async () => {
@@ -18,7 +22,15 @@ export const Shop = () => {
       setTubs(tubsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
+    const getPayload = async () => {
+      if (!urlSearchParams) return;
+      const payment_token = urlSearchParams.get("payment_token");
+      const payload = await decodeToken(payment_token);
+      console.log(payload);
+    };
+
     loadTubs();
+    getPayload();
   }, []);
 
   return (

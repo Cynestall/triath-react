@@ -2,20 +2,20 @@
 
 const jose = require("jose");
 
+const secret = new TextEncoder().encode(
+  process.env.REACT_APP_PAYMENT_SECRET_KEY
+);
+
 export async function generateToken() {
   const payload = {
     amount: 50,
     currency: "EUR",
     access_key: process.env.REACT_APP_PAYMENT_ACCESS_KEY,
-    merchant_reference: "4",
-    merchant_return_url: "http://localhost:3000/collection",
+    merchant_reference: "12",
+    merchant_return_url: "http://localhost:3000/redirect/",
     merchant_notification_url: "https://montonio.com/orders/payment_webhook",
     payment_information_unstructured: "Tarmos",
   };
-
-  const secret = new TextEncoder().encode(
-    process.env.REACT_APP_PAYMENT_SECRET_KEY
-  );
 
   const jwt = await new jose.SignJWT(payload)
     .setProtectedHeader({
@@ -23,6 +23,14 @@ export async function generateToken() {
     })
     .setExpirationTime("10m")
     .sign(secret);
-  console.log(jwt);
+
   return jwt;
+}
+
+export async function decodeToken(payment_token) {
+  const { payload } = await jose.jwtVerify(payment_token, secret, {
+    algorithms: ["HS256"],
+  });
+
+  return payload;
 }

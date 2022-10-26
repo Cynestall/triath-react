@@ -5,6 +5,8 @@ import { Add } from "./components/Add";
 import { NoMatch } from "./components/NoMatch";
 import { TubShop } from "./components/TubShop";
 import { useState } from "react";
+import { Redirect } from "./components/Redirect";
+import { Success } from "./components/Success";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -20,6 +22,8 @@ function App() {
             path="/products/:tub"
             element={<TubShop cart={cart} setCart={setCart} />}
           />
+          <Route path="/redirect" element={<Redirect />} />
+          <Route path="/success" element={<Success />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </div>
