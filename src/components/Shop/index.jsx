@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../../shared/Navbar";
 import { Footer } from "../../shared/Footer";
 import styled from "styled-components";
