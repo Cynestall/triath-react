@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { decodeToken } from "../utils/paymentApi";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Redirect = () => {
   const navigate = useNavigate();
-  const urlSearchParams = useMemo(
+  const urlSearchParams = useEffect(
     () => new URLSearchParams(window.location.search),
     []
   );

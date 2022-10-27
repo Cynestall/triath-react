@@ -1,4 +1,5 @@
 export const primaryColour = "#CF3A4B";
+export const primaryDisabledColour = "#DA8C95";
 export const primaryHoverColour = "#9C0819";
 export const textColour = "#0B0014";
 export const secondaryGrayColour = "#D0D0D0";

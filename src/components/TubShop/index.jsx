@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getTubByTitle, getTubDescriptionByTitle } from "../../firebase";
 import { Footer } from "../../shared/Footer";
@@ -27,7 +27,7 @@ export const TubShop = ({ cart, setCart }) => {
   const pathname = window.location.pathname;
   const titleOfProduct = pathname.substring(pathname.lastIndexOf("/") + 1);
 
-  useMemo(() => {
+  useEffect(() => {
     const getTub = async () => {
       setLoading(true);
 
@@ -100,8 +100,6 @@ export const TubShop = ({ cart, setCart }) => {
                 tubId={tub.id}
                 title={tub.title}
                 flavours={tub.flavours}
-                cart={cart}
-                setCart={setCart}
                 selectedFlavour={selectedFlavour}
                 setSelectedFlavour={setSelectedFlavour}
               ></FlavourAndCart>

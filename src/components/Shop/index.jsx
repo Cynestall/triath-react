@@ -1,5 +1,5 @@
 import React from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../shared/Navbar";
 import { Footer } from "../../shared/Footer";
 import styled from "styled-components";
@@ -16,7 +16,7 @@ export const Shop = () => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   console.log(urlSearchParams.get("payment_token"));
 
-  useMemo(() => {
+  useEffect(() => {
     const loadTubs = async () => {
       const tubsData = await getTubs();
       setTubs(tubsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
