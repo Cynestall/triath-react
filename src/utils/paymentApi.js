@@ -11,7 +11,7 @@ export async function generateToken() {
     amount: 50,
     currency: "EUR",
     access_key: process.env.REACT_APP_PAYMENT_ACCESS_KEY,
-    merchant_reference: "12",
+    merchant_reference: "14",
     merchant_return_url: "http://localhost:3000/redirect/",
     merchant_notification_url: "https://montonio.com/orders/payment_webhook",
     payment_information_unstructured: "Tarmos",
