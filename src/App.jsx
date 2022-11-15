@@ -6,6 +6,7 @@ import { NoMatch } from "./components/NoMatch";
 import { TubShop } from "./components/TubShop";
 import { Redirect } from "./components/Redirect";
 import { Success } from "./components/Success";
+import { CartView } from "./components/CartView";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/products/:tub" element={<TubShop />} />
           <Route path="/redirect" element={<Redirect />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/cart" element={<CartView />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </div>

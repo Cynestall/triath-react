@@ -12,7 +12,7 @@ import { Dropdown } from "../../shared/Dropdown";
 import { generateToken } from "../../utils/paymentApi";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../reducers/cartReducer";
-import { store } from "../..";
+
 import { readCartFromStorage, saveCartToStorage } from "../../utils/cartSave";
 
 export const FlavourAndCart = ({
@@ -46,8 +46,7 @@ export const FlavourAndCart = ({
       resolve();
     });
     saveCartToStorage();
-
-    console.log(readCartFromStorage());
+    setAmount(1);
   };
 
   return (

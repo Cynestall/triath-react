@@ -36,10 +36,18 @@ export const Navbar = ({ transparent }) => {
             <Link to="/collection">SHOP</Link>
             <Link to="/about">ABOUT US</Link>
           </NavWhite>
-          <Cart transparent>
-            <ShoppingCartOutlinedIcon fontSize="medium" />
-            <span>{formatPrice(cart.totalAmount)}</span>
-          </Cart>
+          <Link
+            to="/cart"
+            style={{
+              textDecoration: "none",
+              color: `${colours.mainWhiteTextColour}`,
+            }}
+          >
+            <Cart transparent>
+              <ShoppingCartOutlinedIcon fontSize="medium" />
+              <span>{formatPrice(cart.totalAmount)}</span>
+            </Cart>
+          </Link>
         </Wrapper>
       </Header>
     );
@@ -57,10 +65,15 @@ export const Navbar = ({ transparent }) => {
           <Link to="/collection">SHOP</Link>
           <Link to="/about">ABOUT US</Link>
         </Nav>
-        <Cart>
-          <ShoppingCartOutlinedIcon fontSize="medium" />
-          <span>{formatPrice(cart.totalAmount)}</span>
-        </Cart>
+        <Link
+          to="/cart"
+          style={{ textDecoration: "none", color: `${colours.textColour}` }}
+        >
+          <Cart>
+            <ShoppingCartOutlinedIcon fontSize="medium" />
+            <span>{formatPrice(cart.totalAmount)}</span>
+          </Cart>
+        </Link>
       </Wrapper>
     </Header>
   );
@@ -159,6 +172,7 @@ const Cart = styled.div`
   line-height: ${fonts.lineHeight24};
   cursor: pointer;
   transition: 200ms;
+  text-decoration: none;
   span {
     padding-left: ${spacings.spacing8};
   }

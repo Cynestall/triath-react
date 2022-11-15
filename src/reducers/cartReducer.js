@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { readCartFromStorage, saveCartToStorage } from "../utils/cartSave";
+import { readCartFromStorage } from "../utils/cartSave";
 
 const savedCart = readCartFromStorage();
 
@@ -15,10 +14,21 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: initialValue,
   reducers: {
-    incrementAmount: (state, action) => {
-      console.log(state, action);
+    setAmount: (state, action) => {
+      const tubId = action.payload.id;
+      const amount = action.payload.amount;
+
+      state.tubs.map((stateTub) => {
+        if (stateTub.id === tubId) {
+          stateTub.amount = amount;
+        }
+      });
+      state.totalAmount = 0;
+      state.tubs.map((stateTub) => {
+        state.totalAmount += stateTub.amount * stateTub.price;
+      });
+      state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
     },
-    decrementAmount: (state, action) => {},
     addToCart: (state, action) => {
       const tubId = action.payload.id;
       const price = action.payload.price;
@@ -50,14 +60,27 @@ export const cartSlice = createSlice({
           }
         });
       }
+      state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
     },
     removeFromCart: (state, action) => {
-      console.log("i have been niggered");
+      const newState = state.tubs.filter((stateTub) => {
+        if (stateTub.id !== action.payload) {
+          return stateTub;
+        }
+      });
+      state.tubs = newState;
+
+      state.totalAmount = 0;
+      if (state.tubs.length) {
+        state.tubs.map((stateTub) => {
+          state.totalAmount += stateTub.amount * stateTub.price;
+        });
+      }
+      state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
     },
   },
 });
 
-export const { incrementAmount, decrementAmount, addToCart, removeFromCart } =
-  cartSlice.actions;
+export const { setAmount, addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

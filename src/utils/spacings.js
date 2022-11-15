@@ -1,3 +1,4 @@
+export const spacing1 = "0.0625rem";
 export const spacing2 = "0.125rem";
 export const spacing4 = "0.25rem";
 export const spacing6 = "0.375rem";
