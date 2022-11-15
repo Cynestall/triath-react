@@ -14,7 +14,7 @@ const MainPageDiv = styled.div`
   gap: ${spacings.spacing80};
 `;
 
-export const MainPage = ({ cart }) => {
+export const MainPage = () => {
   return (
     <MainPageDiv>
       <Hero />

@@ -44,14 +44,14 @@ const Logo = styled.img`
 `;
 const TextBebas = styled.h1`
   color: ${colours.textColour};
-  font-family: ${fonts.bebasNeue}
+  font-family: ${fonts.bebasNeue};
   font-size: ${fonts.fontSize64};
   line-height: ${fonts.lineHeight64};
   margin-bottom: 0;
 `;
 const Text = styled.h1`
   color: ${colours.textColour};
-  font-family: ${fonts.montserrat}
+  font-family: ${fonts.montserrat};
   font-size: ${fonts.fontSize24};
   line-height: ${fonts.lineHeight24};
 `;

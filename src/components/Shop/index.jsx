@@ -8,28 +8,35 @@ import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import { TubCardShop } from "./TubCardShop";
 import { decodeToken } from "../../utils/paymentApi";
+import { addProduct } from "../../reducers/productsReducer";
+import { doc } from "@firebase/firestore";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Shop = () => {
   const [tubs, setTubs] = useState([]);
-
+  const dispatch = useDispatch();
+  const tubsFromState = useSelector((state) => state.products.tubs);
   const urlSearchParams = new URLSearchParams(window.location.search);
   console.log(urlSearchParams.get("payment_token"));
 
   useEffect(() => {
     const loadTubs = async () => {
       const tubsData = await getTubs();
-      setTubs(tubsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      tubsData.docs.map((doc) =>
+        dispatch(addProduct({ ...doc.data(), id: doc.id }))
+      );
     };
 
-    const getPayload = async () => {
-      if (!urlSearchParams) return;
-      const payment_token = urlSearchParams.get("payment_token");
-      const payload = await decodeToken(payment_token);
-      console.log(payload);
-    };
-
-    loadTubs();
-    getPayload();
+    // const getPayload = async () => {
+    //   if (!urlSearchParams) return;
+    //   const payment_token = urlSearchParams.get("payment_token");
+    //   const payload = await decodeToken(payment_token);
+    //   console.log(payload);
+    // };
+    if (tubsFromState.length === 0) {
+      loadTubs();
+    }
+    // getPayload();
   }, []);
 
   return (
@@ -37,7 +44,7 @@ export const Shop = () => {
       <Navbar />
       <Wrapper>
         <TubSelection>
-          {tubs.map((tub) => {
+          {tubsFromState.map((tub) => {
             return (
               <TubCardShop
                 key={tub.id}

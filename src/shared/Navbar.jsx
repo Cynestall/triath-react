@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import * as colours from "../utils/colors";
 import * as fonts from "../utils/fonts";
@@ -10,10 +11,7 @@ import { Link } from "react-router-dom";
 
 import logo from "../icons/triathBlackLogo.svg";
 import logoWhite from "../icons/triathWhiteLogo.svg";
-
-const Price = () => {
-  return <span>0.00$</span>;
-};
+import { formatPrice } from "../utils/priceFormatter";
 
 const aStyle = { textDecoration: "none", color: `${colours.textColour}` };
 const aStyleWhite = {
@@ -22,6 +20,8 @@ const aStyleWhite = {
 };
 
 export const Navbar = ({ transparent }) => {
+  const cart = useSelector((state) => state.cart);
+
   if (transparent) {
     return (
       <Header transparent>
@@ -38,7 +38,7 @@ export const Navbar = ({ transparent }) => {
           </NavWhite>
           <Cart transparent>
             <ShoppingCartOutlinedIcon fontSize="medium" />
-            <Price />
+            <span>{formatPrice(cart.totalAmount)}</span>
           </Cart>
         </Wrapper>
       </Header>
@@ -59,7 +59,7 @@ export const Navbar = ({ transparent }) => {
         </Nav>
         <Cart>
           <ShoppingCartOutlinedIcon fontSize="medium" />
-          <Price />
+          <span>{formatPrice(cart.totalAmount)}</span>
         </Cart>
       </Wrapper>
     </Header>

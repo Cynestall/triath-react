@@ -10,20 +10,44 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button } from "../../shared/Button";
 import { Dropdown } from "../../shared/Dropdown";
 import { generateToken } from "../../utils/paymentApi";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../reducers/cartReducer";
+import { store } from "../..";
+import { readCartFromStorage, saveCartToStorage } from "../../utils/cartSave";
 
 export const FlavourAndCart = ({
   tubId,
   title,
+  price,
   flavours,
   cart,
   setCart,
   selectedFlavour,
   setSelectedFlavour,
 }) => {
+  const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
   const PaymentOnClick = async () => {
     const token = await generateToken();
     window.location = `https://sandbox-payments.montonio.com?payment_token=${token}`;
+  };
+
+  const onSubmit = () => {
+    const payload = {
+      id: `${title}-${selectedFlavour}`,
+      price,
+      amount,
+      flavour: selectedFlavour,
+    };
+
+    new Promise((resolve) => {
+      dispatch(addToCart(payload));
+
+      resolve();
+    });
+    saveCartToStorage();
+
+    console.log(readCartFromStorage());
   };
 
   return (
@@ -71,7 +95,7 @@ export const FlavourAndCart = ({
         </AmountSelection>
         <Button
           onClick={() => {
-            PaymentOnClick();
+            onSubmit();
           }}
         >
           <ButtonWrapper>

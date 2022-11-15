@@ -15,8 +15,9 @@ import { PerformanceStats } from "./PerformanceStats";
 import { FlavourAndCart } from "./FlavourAndCart";
 import { ShopTubDescription } from "./ShopTubDescription";
 import { NoMatch } from "../NoMatch";
+import { formatPrice } from "../../utils/priceFormatter";
 
-export const TubShop = ({ cart, setCart }) => {
+export const TubShop = () => {
   const [tub, setTub] = useState([]);
   const [tubDescription, setTubDescription] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -79,7 +80,9 @@ export const TubShop = ({ cart, setCart }) => {
                         <MainTitle>{tub.title} PRE-WORKOUT</MainTitle>
                         <MainSubtitle>{tub.subtitle}</MainSubtitle>
                       </PreworkoutNameContainer>
-                      <PreworkoutPrice>{tub.price}€</PreworkoutPrice>
+                      <PreworkoutPrice>
+                        {formatPrice(tub.price)}
+                      </PreworkoutPrice>
                     </PreworkoutNameAndPrice>
                     <Spacer />
                     <PerformanceStats
@@ -99,6 +102,7 @@ export const TubShop = ({ cart, setCart }) => {
               <FlavourAndCart
                 tubId={tub.id}
                 title={tub.title}
+                price={tub.price}
                 flavours={tub.flavours}
                 selectedFlavour={selectedFlavour}
                 setSelectedFlavour={setSelectedFlavour}

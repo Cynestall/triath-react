@@ -9,12 +9,14 @@ import * as flavourConstants from "../../utils/flavours";
 
 import { Button } from "../../shared/Button";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/priceFormatter";
 
 export const TubCardShop = ({ title, price, subtitle, flavours }) => {
   const navigate = useNavigate();
   const redirectToItem = () => {
     navigate(`/products/${title}`);
   };
+
   return (
     <TubCardShopDiv onClick={redirectToItem}>
       <Wrapper>
@@ -25,7 +27,7 @@ export const TubCardShop = ({ title, price, subtitle, flavours }) => {
               <Title>{title}</Title>
               <Subtitle>{subtitle}</Subtitle>
             </ProductName>
-            <Price>{price}€</Price>
+            <Price>{formatPrice(price)}</Price>
           </DescriptionContainer>
           <Button>BUY NOW</Button>
           <Flavours>
