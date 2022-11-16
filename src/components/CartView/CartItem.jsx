@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import * as colours from "../../utils/colors";
@@ -13,17 +13,22 @@ import { formatPrice } from "../../utils/priceFormatter";
 import { useDispatch } from "react-redux";
 
 import { removeFromCart, setAmount } from "../../reducers/cartReducer";
+import { saveCartToStorage } from "../../utils/cartSave";
 
 export const CartItem = ({ tub }) => {
   const title = tub.id.split("-")[0];
   const flavour = tub.id.split("-")[1];
   const dispatch = useDispatch();
+
+  const [newAmount, setNewAmount] = useState(tub.amount);
+
   return (
     <CartItemDiv>
       <ProductSection>
         <CloseIcon
           onClick={() => {
             dispatch(removeFromCart(tub.id));
+            saveCartToStorage();
           }}
           fontSize="small"
           style={{ color: `${colours.mainGrayTextColour}`, cursor: "pointer" }}
@@ -44,13 +49,23 @@ export const CartItem = ({ tub }) => {
           type="text"
           maxLength="3"
           oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-          value={tub.amount}
-          onChange={(event) => {
+          value={newAmount}
+          onKeyUp={(event) => {
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              event.target.blur();
+            }
+          }}
+          onBlur={() => {
             const payload = {
               id: tub.id,
-              amount: event.target.value,
+              amount: newAmount,
             };
             dispatch(setAmount(payload));
+            saveCartToStorage();
+          }}
+          onChange={(event) => {
+            setNewAmount(event.target.value);
           }}
         />
       </QuantitySection>

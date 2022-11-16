@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
 
       state.tubs.map((stateTub) => {
         if (stateTub.id === tubId) {
-          stateTub.amount = amount;
+          stateTub.amount = Number(amount);
         }
       });
       state.totalAmount = 0;
@@ -47,7 +47,7 @@ export const cartSlice = createSlice({
             id: tubId,
             flavour,
             price,
-            amount,
+            amount: Number(amount),
           },
         ];
         state.totalAmount += price * amount;

@@ -18,64 +18,77 @@ export const CartView = () => {
 
   return (
     <CartViewDiv>
-      <Navbar />
-      <Content>
-        <ShoppingCart>
-          <TitleOfSection>Shopping Cart</TitleOfSection>
-          <TableDescription>
-            <TableLabels>
-              <Label style={{ flex: "3" }}>Product</Label>
-              <Label style={{ flex: "1", textAlign: "center" }}>Price</Label>
-              <Label style={{ flex: "1", textAlign: "center" }}>Quantity</Label>
-              <Label style={{ flex: "1", textAlign: "end" }}>Subtotal</Label>
-            </TableLabels>
-            <Divider />
-          </TableDescription>
-          {cart.tubs.length > 0
-            ? cart.tubs.map((tub) => {
-                return <CartItem key={tub.id} tub={tub} />;
-              })
-            : "empty"}
-        </ShoppingCart>
+      <TopArea>
+        <Navbar />
+        <Content>
+          <ShoppingCart>
+            <TitleOfSection>Shopping Cart</TitleOfSection>
+            <TableDescription>
+              <TableLabels>
+                <Label style={{ flex: "3" }}>Product</Label>
+                <Label style={{ flex: "1", textAlign: "center" }}>Price</Label>
+                <Label style={{ flex: "1", textAlign: "center" }}>
+                  Quantity
+                </Label>
+                <Label style={{ flex: "1", textAlign: "end" }}>Subtotal</Label>
+              </TableLabels>
+              <Divider />
+            </TableDescription>
+            {cart.tubs.length > 0
+              ? cart.tubs.map((tub) => {
+                  return <CartItem key={tub.id} tub={tub} />;
+                })
+              : "empty"}
+          </ShoppingCart>
 
-        <CartTotalWrapper>
-          <CartTotal>
-            <TitleOfSection>Cart Total</TitleOfSection>
-            <CartTextWrapper>
-              <CartText>Subtotal</CartText>
-              <CartText>{formatPrice(cart.totalAmount)}</CartText>
-            </CartTextWrapper>
-            <Divider />
-            <CartTextWrapper>
-              <CartText>Shipping</CartText>
-              <CartText>{formatPrice(5.99)}</CartText>
-            </CartTextWrapper>
-            <Divider />
-            <CartTextWrapper style={{ paddingBottom: `${spacings.spacing8}` }}>
-              <CartTextTotal>Total</CartTextTotal>
-              <CartTextTotal>
-                {cart.tubs.length > 0
-                  ? formatPrice(cart.totalAmount + 5.99)
-                  : formatPrice(0)}
-              </CartTextTotal>
-            </CartTextWrapper>
-            {cart.tubs.length > 0 ? (
-              <Button>CHECKOUT</Button>
-            ) : (
-              <Button isDisabled>CHECKOUT</Button>
-            )}
-          </CartTotal>
-        </CartTotalWrapper>
-      </Content>
+          <CartTotalWrapper>
+            <CartTotal>
+              <TitleOfSection>Cart Total</TitleOfSection>
+              <CartTextWrapper>
+                <CartText>Subtotal</CartText>
+                <CartText>{formatPrice(cart.totalAmount)}</CartText>
+              </CartTextWrapper>
+              <Divider />
+              <CartTextWrapper>
+                <CartText>Shipping</CartText>
+                <CartText>{formatPrice(5.99)}</CartText>
+              </CartTextWrapper>
+              <Divider />
+              <CartTextWrapper
+                style={{ paddingBottom: `${spacings.spacing8}` }}
+              >
+                <CartTextTotal>Total</CartTextTotal>
+                <CartTextTotal>
+                  {cart.tubs.length > 0
+                    ? formatPrice(cart.totalAmount + 5.99)
+                    : formatPrice(0)}
+                </CartTextTotal>
+              </CartTextWrapper>
+              {cart.tubs.length > 0 ? (
+                <Button>CHECKOUT</Button>
+              ) : (
+                <Button isDisabled>CHECKOUT</Button>
+              )}
+            </CartTotal>
+          </CartTotalWrapper>
+        </Content>
+      </TopArea>
       <Footer />
     </CartViewDiv>
   );
 };
-
+const TopArea = styled.div`
+  display: flex;
+  gap: ${spacings.spacing80};
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+`;
 const CartViewDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: ${spacings.spacing80};
   background-color: ${colours.backgroundColour};
   min-height: 100vh;
@@ -85,7 +98,8 @@ const CartViewDiv = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   gap: ${spacings.spacing32};
 `;
 
