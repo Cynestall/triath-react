@@ -18,13 +18,13 @@ export const cartSlice = createSlice({
       const tubId = action.payload.id;
       const amount = action.payload.amount;
 
-      state.tubs.map((stateTub) => {
-        if (stateTub.id === tubId) {
-          stateTub.amount = Number(amount);
-        }
-      });
+      // miras smort do dis
+      // what if id does not exist, testing should be done
+      const stateTub = state.tubs.find((stateTub) => stateTub.id === tubId);
+      stateTub.amount = Number(amount);
+
       state.totalAmount = 0;
-      state.tubs.map((stateTub) => {
+      state.tubs.forEach((stateTub) => {
         state.totalAmount += stateTub.amount * stateTub.price;
       });
       state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
@@ -53,26 +53,22 @@ export const cartSlice = createSlice({
         state.totalAmount += price * amount;
       } else {
         // find correct tub
-        state.tubs.map((stateTub) => {
-          if (stateTub.id === tubId) {
-            stateTub.amount += amount;
-            state.totalAmount += price * amount;
-          }
-        });
+        const stateTub = state.tubs.find((stateTub) => stateTub.id === tubId);
+        stateTub.amount += amount;
+        state.totalAmount += price * amount;
       }
+
       state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
     },
     removeFromCart: (state, action) => {
-      const newState = state.tubs.filter((stateTub) => {
-        if (stateTub.id !== action.payload) {
-          return stateTub;
-        }
-      });
-      state.tubs = newState;
+      const arrayWithoutItem = state.tubs.filter(
+        (stateTub) => stateTub.id !== action.payload
+      );
+      state.tubs = arrayWithoutItem;
 
       state.totalAmount = 0;
       if (state.tubs.length) {
-        state.tubs.map((stateTub) => {
+        state.tubs.forEach((stateTub) => {
           state.totalAmount += stateTub.amount * stateTub.price;
         });
       }

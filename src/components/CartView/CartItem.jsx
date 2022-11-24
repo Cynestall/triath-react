@@ -35,7 +35,7 @@ export const CartItem = ({ tub }) => {
         />
         <TubImage src={images.dictOfImages[title]} />
         <VerticalWrapper>
-          <TubTitle>{title} PRE-workout</TubTitle>
+          <TubTitle>{title}</TubTitle>
           <TubFlavour>
             Flavour: {flavourConstants.flavourNames[flavour]}
           </TubFlavour>
@@ -65,7 +65,8 @@ export const CartItem = ({ tub }) => {
             saveCartToStorage();
           }}
           onChange={(event) => {
-            setNewAmount(event.target.value);
+            const newValue = event.target.value.replace(/[^0-9]/g, "");
+            setNewAmount(newValue);
           }}
         />
       </QuantitySection>

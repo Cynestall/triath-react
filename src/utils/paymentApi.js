@@ -6,17 +6,24 @@ const secret = new TextEncoder().encode(
   process.env.REACT_APP_PAYMENT_SECRET_KEY
 );
 
-export async function generateToken() {
+export const generatePaymentPayload = (data) => {
   const payload = {
-    amount: 50,
+    amount: data.totalAmount,
     currency: "EUR",
     access_key: process.env.REACT_APP_PAYMENT_ACCESS_KEY,
-    merchant_reference: "14",
+    merchant_reference: data.transactionId,
+    checkout_first_name: data.firstName,
+    checkout_last_name: data.lastName,
+    checkout_email: data.email,
+    checkout_phone_number: data.phoneNumber,
     merchant_return_url: "http://localhost:3000/redirect/",
     merchant_notification_url: "https://montonio.com/orders/payment_webhook",
-    payment_information_unstructured: "Tarmos",
   };
 
+  return payload;
+};
+
+export async function generateToken(payload) {
   const jwt = await new jose.SignJWT(payload)
     .setProtectedHeader({
       alg: "HS256",

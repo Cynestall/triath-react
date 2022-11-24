@@ -7,6 +7,7 @@ import { TubShop } from "./components/TubShop";
 import { Redirect } from "./components/Redirect";
 import { Success } from "./components/Success";
 import { CartView } from "./components/CartView";
+import { Checkout } from "./components/Checkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/redirect" element={<Redirect />} />
           <Route path="/success" element={<Success />} />
           <Route path="/cart" element={<CartView />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </div>

@@ -6,11 +6,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartReducer from "./reducers/cartReducer";
 import productsReducer from "./reducers/productsReducer";
+import credentialsReducer from "./reducers/credentialsReducer";
+import locationsReducer from "./reducers/locationsReducer";
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     products: productsReducer,
+    credentials: credentialsReducer,
+    locations: locationsReducer,
   },
 });
 

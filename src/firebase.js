@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, addDoc } from "@firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -34,4 +34,10 @@ export async function getTubDescriptionByTitle(title) {
   const tubs = await getDocs(descriptionCollectionRef);
   const filteredTub = tubs.docs.filter((tub) => tub.data().title === title);
   return filteredTub[0];
+}
+
+export async function setTransaction(data) {
+  const newTransactionRef = await addDoc(collection(db, "transactions"), data);
+
+  return newTransactionRef.id;
 }

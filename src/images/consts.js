@@ -26,11 +26,15 @@ import watermelonBerry from "./watermelon-berry.png";
 import electricLemonade from "./electric-lemonade.png";
 import helensMix from "./helens-mix.png";
 import equatorialElixir from "./equatorial-elixir.png";
+import omniva from "./omniva.png";
+import itella from "./itella.png";
 
 export const essentialsImage = essentials;
 export const tartarusImage = tartarus;
 export const olympusImage = olympus;
 export const olympusAdvertisementImage = olympusAdvertisement;
+export const omnivaImage = omniva;
+export const itellaImage = itella;
 
 export const dictOfImages = {
   essentials: essentials,

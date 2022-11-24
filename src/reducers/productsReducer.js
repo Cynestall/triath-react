@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialValue = {
   tubs: [],
@@ -24,5 +24,3 @@ export const productsSlice = createSlice({
 export const { addProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;
-
-const productAction = (state, action) => {};
