@@ -9,11 +9,8 @@ import * as fonts from "../../utils/fonts";
 import { Navbar } from "../../shared/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../../utils/priceFormatter";
-import { updateCredential } from "../../reducers/credentialsReducer";
 import { Button } from "../../shared/Button";
-import { generatePaymentPayload, generateToken } from "../../utils/paymentApi";
-
-import * as images from "../../images/consts";
+import { generatePaymentPayload } from "../../utils/paymentApi";
 
 import { addItella, addOmniva } from "../../reducers/locationsReducer";
 import { omniva_places_info } from "../../mocks/mockOmniva";
@@ -21,6 +18,59 @@ import { itella_places_info } from "../../mocks/mockItella";
 
 import { setTransaction } from "../../firebase";
 import { CredentialsInput } from "./CredentialsInput.jsx";
+import { Footer } from "../../shared/Footer";
+
+const validateInputFields = (credentialsInfo) => {
+  if (!credentialsInfo.firstName) {
+    return false;
+  }
+  if (!credentialsInfo.lastName) {
+    return false;
+  }
+  if (!credentialsInfo.email) {
+    return false;
+  }
+  if (!credentialsInfo.phoneNumber) {
+    return false;
+  }
+  if (!credentialsInfo.cityCounty) {
+    return false;
+  }
+  if (!credentialsInfo.zipCode) {
+    return false;
+  }
+  if (!credentialsInfo.address) {
+    return false;
+  }
+  if (!credentialsInfo.courier) {
+    return false;
+  }
+  if (
+    !credentialsInfo.parcelMachine ||
+    credentialsInfo.parcelMachine === "Select parcel machine"
+  ) {
+    return false;
+  }
+  return true;
+};
+
+const shippingText = (courier) => {
+  const textValue = shippingPrice(courier);
+  if (textValue) return formatPrice(textValue);
+  return "TBD";
+};
+
+// pricing hard coded since using package sizes from respective couriers
+const shippingPrice = (courier) => {
+  console.log(courier);
+  if (!courier) return null;
+  if (courier === "omniva") {
+    return 3.85;
+  }
+  if (courier === "itella") {
+    return 2.99;
+  }
+};
 
 export const Checkout = () => {
   const credentialsInfo = useSelector((state) => state.credentials.info);
@@ -28,50 +78,11 @@ export const Checkout = () => {
   const locations = useSelector((state) => state.locations);
   const dispatch = useDispatch();
 
-  const validateInputFields = () => {
-    if (!credentialsInfo.firstName) {
-      return false;
-    }
-    if (!credentialsInfo.lastName) {
-      return false;
-    }
-    if (!credentialsInfo.email) {
-      return false;
-    }
-    if (!credentialsInfo.phoneNumber) {
-      return false;
-    }
-    if (!credentialsInfo.cityCounty) {
-      return false;
-    }
-    if (!credentialsInfo.zipCode) {
-      return false;
-    }
-    if (!credentialsInfo.address) {
-      return false;
-    }
-    if (!credentialsInfo.courier) {
-      return false;
-    }
-    if (
-      !credentialsInfo.parcelMachine ||
-      credentialsInfo.parcelMachine === "Select parcel machine"
-    ) {
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmitPurchase = (event) => {
-    event.preventDefault();
-    if (validateInputFields()) {
-      submit();
-    } else {
-      setError(true);
-    }
-  };
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const submit = async () => {
+    setLoading(true);
     const products = cart.tubs.map((tub) => {
       return {
         product_name: tub.id,
@@ -79,9 +90,11 @@ export const Checkout = () => {
         quantity: tub.amount,
       };
     });
+    const totalAmount =
+      cart.totalAmount + shippingPrice(credentialsInfo.courier);
 
     const data = {
-      totalAmount: cart.totalAmount,
+      totalAmount,
       firstName: credentialsInfo.firstName,
       lastName: credentialsInfo.lastName,
       email: credentialsInfo.email,
@@ -117,7 +130,14 @@ export const Checkout = () => {
       });
   };
 
-  const [error, setError] = useState(false);
+  const handleSubmitPurchase = (event) => {
+    event.preventDefault();
+    if (validateInputFields(credentialsInfo)) {
+      submit();
+    } else {
+      setError(true);
+    }
+  };
 
   useEffect(() => {
     if (
@@ -173,18 +193,25 @@ export const Checkout = () => {
             <Divider />
             <CartTextWrapper>
               <CartText>Shipping</CartText>
-              <CartText>TBD</CartText>
+              <CartText>{shippingText(credentialsInfo.courier)}</CartText>
             </CartTextWrapper>
             <Divider />
             <CartTextWrapper style={{ paddingBottom: `${spacings.spacing8}` }}>
               <CartTextTotal>Total</CartTextTotal>
-              <CartTextTotal>{formatPrice(cart.totalAmount)}</CartTextTotal>
+              <CartTextTotal>
+                {formatPrice(
+                  cart.totalAmount + shippingPrice(credentialsInfo.courier)
+                )}
+              </CartTextTotal>
             </CartTextWrapper>
-            <Button type="submit">Continue</Button>
+            <Button type="submit" isLoading={loading}>
+              Continue
+            </Button>
             <Error visible={error}>An error has occurred.</Error>
           </OrderSummary>
         </OrderSummaryWrapper>
       </Content>
+      <Footer />
     </CheckoutDiv>
   );
 };
@@ -245,6 +272,7 @@ const Divider = styled.div`
 `;
 
 const OrderSummaryWrapper = styled.div`
+  position: relative;
   flex: 1.1;
 `;
 const CredentialsWrapper = styled.div`

@@ -6,10 +6,17 @@ import * as spacings from "../utils/spacings";
 import * as fonts from "../utils/fonts";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 export const Modal = ({ success, setShowModal }) => {
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
+
+  const handleChange = () => {
+    body.style.overflow = "auto";
+    setShowModal(false);
+  };
+
   if (success) {
     return (
       <ModalContainer>
@@ -18,14 +25,14 @@ export const Modal = ({ success, setShowModal }) => {
             <CloseIcon
               fontSize="large"
               sx={{ cursor: "pointer" }}
-              onClick={setShowModal(false)}
+              onClick={handleChange}
             />
           </CloseWrapper>
           <CheckIcon color="success" sx={{ fontSize: 200 }} />
           <CheckoutHeading>SUCCESS</CheckoutHeading>
           <CheckoutText>
             Your purchase has been processed. <br />
-            You will receive an email shortly.
+            You will receive an email soon.
           </CheckoutText>
         </ModalWrapper>
       </ModalContainer>
@@ -33,7 +40,21 @@ export const Modal = ({ success, setShowModal }) => {
   } else {
     return (
       <ModalContainer>
-        <ModalWrapper>False</ModalWrapper>
+        <ModalWrapper>
+          <CloseWrapper>
+            <CloseIcon
+              fontSize="large"
+              sx={{ cursor: "pointer" }}
+              onClick={handleChange}
+            />
+          </CloseWrapper>
+          <ErrorOutlineIcon sx={{ fontSize: 200, color: "#c62d2d" }} />
+          <CheckoutHeading>FAILED</CheckoutHeading>
+          <CheckoutText>
+            Your purchase has failed. <br />
+            Please try again.
+          </CheckoutText>
+        </ModalWrapper>
       </ModalContainer>
     );
   }

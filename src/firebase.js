@@ -47,6 +47,7 @@ export async function setTransaction(data) {
 
   return newTransactionRef.id;
 }
+
 export async function deleteTransaction(id) {
   await deleteDoc(doc(db, "transactions", id));
 }

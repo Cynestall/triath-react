@@ -8,20 +8,16 @@ import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import { TubCardShop } from "./TubCardShop";
 import { addProduct } from "../../reducers/productsReducer";
+import { Modal } from "../../shared/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Modal } from "../../shared/Modal";
 
 export const Shop = () => {
   const dispatch = useDispatch();
   const tubsFromState = useSelector((state) => state.products.tubs);
-  const [showModal, setShowModal] = useState(true);
-  const [success, setSuccess] = useState(true);
-  const [loading, setLoading] = useState(true);
-
   const location = useLocation();
-
-  console.log(location.state);
+  const [showModal, setShowModal] = useState(false);
+  const [successful, setSuccessful] = useState(false);
 
   useEffect(() => {
     const loadTubs = async () => {
@@ -29,13 +25,10 @@ export const Shop = () => {
       tubsData.docs.map((doc) =>
         dispatch(addProduct({ ...doc.data(), id: doc.id }))
       );
-      setLoading(false);
     };
 
     if (tubsFromState.length === 0) {
       loadTubs();
-    } else {
-      setLoading(false);
     }
 
     let wasSuccessful;
@@ -43,14 +36,13 @@ export const Shop = () => {
       ({ success: wasSuccessful } = location.state);
 
       if (wasSuccessful) {
-        setSuccess(true);
         setShowModal(true);
+        setSuccessful(true);
       } else {
-        setSuccess(false);
-        setShowModal(false);
+        setShowModal(true);
+        setSuccessful(false);
       }
     }
-    // getPayload();
   }, []);
 
   return (
@@ -72,6 +64,13 @@ export const Shop = () => {
           })}
         </TubSelection>
       </Wrapper>
+      {showModal && (
+        <Modal
+          success={successful}
+          setShowModal={setShowModal}
+          showModal={showModal}
+        />
+      )}
       <Footer />
     </ShopDiv>
   );

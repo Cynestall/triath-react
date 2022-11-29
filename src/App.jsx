@@ -5,7 +5,6 @@ import { Add } from "./components/Add";
 import { NoMatch } from "./components/NoMatch";
 import { TubShop } from "./components/TubShop";
 import { Redirect } from "./components/Redirect";
-import { Success } from "./components/Success";
 import { CartView } from "./components/CartView";
 import { Checkout } from "./components/Checkout";
 
@@ -20,7 +19,6 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/products/:tub" element={<TubShop />} />
           <Route path="/redirect" element={<Redirect />} />
-          <Route path="/success" element={<Success />} />
           <Route path="/cart" element={<CartView />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NoMatch />} />

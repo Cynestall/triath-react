@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { decodeToken } from "../utils/paymentApi";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import * as colours from "../utils/colors";

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PulseLoader from "react-spinners/PulseLoader";
 
 import * as colours from "../utils/colors";
 import * as fonts from "../utils/fonts";
@@ -16,6 +17,19 @@ export const Button = (props) => {
       <MainButtonLarge onClick={props.onClick}>
         {props.children}
       </MainButtonLarge>
+    );
+  }
+  if (props.isLoading) {
+    return (
+      <MainButtonLoading>
+        <PulseLoader
+          color={colours.mainWhiteTextColour}
+          loading={true}
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </MainButtonLoading>
     );
   }
   if (props.isDisabled) {
@@ -48,6 +62,18 @@ const MainButtonDisabled = styled.button`
   border: none;
   border-radius: 0.625rem;
   background-color: ${colours.primaryDisabledColour};
+  cursor: not-allowed;
+  transition: 200ms;
+`;
+const MainButtonLoading = styled.button`
+  color: ${colours.mainWhiteTextColour};
+  font-family: ${fonts.bebasNeue};
+  font-size: ${fonts.fontSize24};
+  line-height: ${fonts.lineHeight32};
+  padding: ${spacings.spacing4} ${spacings.spacing24};
+  border: none;
+  border-radius: 0.625rem;
+  background-color: ${colours.primaryColour};
   cursor: not-allowed;
   transition: 200ms;
 `;
