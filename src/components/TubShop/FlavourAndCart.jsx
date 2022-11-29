@@ -9,11 +9,10 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Button } from "../../shared/Button";
 import { Dropdown } from "../../shared/Dropdown";
-import { generateToken } from "../../utils/paymentApi";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../reducers/cartReducer";
 
-import { readCartFromStorage, saveCartToStorage } from "../../utils/cartSave";
+import { saveCartToStorage } from "../../utils/cartSave";
 
 export const FlavourAndCart = ({
   tubId,
@@ -27,10 +26,6 @@ export const FlavourAndCart = ({
 }) => {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
-  const PaymentOnClick = async () => {
-    const token = await generateToken();
-    window.location = `https://sandbox-payments.montonio.com?payment_token=${token}`;
-  };
 
   const onSubmit = () => {
     const payload = {

@@ -1,7 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
-import { collection, getDocs, addDoc } from "@firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "@firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -40,4 +46,7 @@ export async function setTransaction(data) {
   const newTransactionRef = await addDoc(collection(db, "transactions"), data);
 
   return newTransactionRef.id;
+}
+export async function deleteTransaction(id) {
+  await deleteDoc(doc(db, "transactions", id));
 }

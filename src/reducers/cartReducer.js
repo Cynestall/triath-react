@@ -74,9 +74,14 @@ export const cartSlice = createSlice({
       }
       state.totalAmount = Math.floor(state.totalAmount * 100) / 100;
     },
+    deleteCart: (state) => {
+      state.tubs = [];
+      state.totalAmount = 0;
+    },
   },
 });
 
-export const { setAmount, addToCart, removeFromCart } = cartSlice.actions;
+export const { setAmount, addToCart, removeFromCart, deleteCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

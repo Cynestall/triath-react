@@ -7,17 +7,21 @@ import { getTubs } from "../../firebase";
 import * as colours from "../../utils/colors";
 import * as spacings from "../../utils/spacings";
 import { TubCardShop } from "./TubCardShop";
-import { decodeToken } from "../../utils/paymentApi";
 import { addProduct } from "../../reducers/productsReducer";
-import { doc } from "@firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { Modal } from "../../shared/Modal";
 
 export const Shop = () => {
-  const [tubs, setTubs] = useState([]);
   const dispatch = useDispatch();
   const tubsFromState = useSelector((state) => state.products.tubs);
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  console.log(urlSearchParams.get("payment_token"));
+  const [showModal, setShowModal] = useState(true);
+  const [success, setSuccess] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  const location = useLocation();
+
+  console.log(location.state);
 
   useEffect(() => {
     const loadTubs = async () => {
@@ -25,16 +29,26 @@ export const Shop = () => {
       tubsData.docs.map((doc) =>
         dispatch(addProduct({ ...doc.data(), id: doc.id }))
       );
+      setLoading(false);
     };
 
-    // const getPayload = async () => {
-    //   if (!urlSearchParams) return;
-    //   const payment_token = urlSearchParams.get("payment_token");
-    //   const payload = await decodeToken(payment_token);
-    //   console.log(payload);
-    // };
     if (tubsFromState.length === 0) {
       loadTubs();
+    } else {
+      setLoading(false);
+    }
+
+    let wasSuccessful;
+    if (location.state) {
+      ({ success: wasSuccessful } = location.state);
+
+      if (wasSuccessful) {
+        setSuccess(true);
+        setShowModal(true);
+      } else {
+        setSuccess(false);
+        setShowModal(false);
+      }
     }
     // getPayload();
   }, []);

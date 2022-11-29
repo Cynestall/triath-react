@@ -75,6 +75,14 @@ export const Checkout = () => {
   };
 
   const submit = async () => {
+    const products = cart.tubs.map((tub) => {
+      return {
+        product_name: tub.id,
+        product_price: tub.price,
+        quantity: tub.amount,
+      };
+    });
+
     const data = {
       totalAmount: cart.totalAmount,
       firstName: credentialsInfo.firstName,
@@ -86,6 +94,7 @@ export const Checkout = () => {
       address: credentialsInfo.address,
       courier: credentialsInfo.courier,
       parcelMachine: credentialsInfo.parcelMachine,
+      products,
     };
 
     const transactionId = await setTransaction(data);
@@ -97,8 +106,18 @@ export const Checkout = () => {
 
     const payload = generatePaymentPayload(dataWithId);
 
-    const token = await generateToken(payload);
-    window.location = `https://sandbox-payments.montonio.com?payment_token=${token}`;
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/payment-token`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        window.location = `https://sandbox-payments.montonio.com?payment_token=${data}`;
+      });
   };
 
   const [error, setError] = useState(false);
