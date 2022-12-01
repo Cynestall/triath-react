@@ -62,7 +62,6 @@ const shippingText = (courier) => {
 
 // pricing hard coded since using package sizes from respective couriers
 const shippingPrice = (courier) => {
-  console.log(courier);
   if (!courier) return null;
   if (courier === "omniva") {
     return 3.85;
@@ -125,7 +124,6 @@ export const Checkout = () => {
     fetch(`${process.env.REACT_APP_API_ENDPOINT}/payment-token`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         window.location = `https://sandbox-payments.montonio.com?payment_token=${data}`;
       });
   };

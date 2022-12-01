@@ -14,8 +14,6 @@ export const productsSlice = createSlice({
       });
       if (!idsOfTubs.includes(action.payload.id)) {
         state.tubs = [...state.tubs, action.payload];
-      } else {
-        console.log(`tub ${action.payload.title} already exists`);
       }
     },
   },
